@@ -1,0 +1,5 @@
+.grid-boxes .col {
+  border: 1px solid gray;
+  padding: 40px;
+  border-radius: 10px;
+}
