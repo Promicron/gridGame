@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Info from "./pages/Info";
 import Game from "./pages/Game";
+import LeaderBoard from "./pages/LeaderBoard";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="info" element={<Info />} />
           <Route path="game" element={<Game />} />
+          <Route path="leaderboard" element={<LeaderBoard />} />
         </Routes>
       </BrowserRouter>
     </div>

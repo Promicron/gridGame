@@ -1,3 +1,5 @@
+import { Nav } from "react-bootstrap";
+
 const Navbar = () => {
   return (
     <nav
@@ -14,6 +16,7 @@ const Navbar = () => {
             /> */}
           GridGame
         </a>
+        <Nav.Link href="/leaderboard">Leaderboard</Nav.Link>
       </div>
     </nav>
   );

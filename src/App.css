@@ -2,4 +2,11 @@
   border: 1px solid gray;
   padding: 40px;
   border-radius: 10px;
+  /* height: 50px; */
+  /* width: 50px; */
+}
+@media screen and(max-width:480px) {
+  /* .grid-boxes .col{
+
+  } */
 }
