@@ -1,4 +1,4 @@
-# 🎯 React Grid Game
+# 🎯 GridGame
 
 A fast-paced reflex game built with React and Bootstrap. Click on randomly highlighted boxes to score points before time runs out!
 
@@ -29,8 +29,8 @@ A fast-paced reflex game built with React and Bootstrap. Click on randomly highl
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/react-grid-game.git
-cd react-grid-game
+git clone https://github.com/Promicron/gridGame.git
+cd gridGame
 ```
 
 ### 2. Install dependencies
