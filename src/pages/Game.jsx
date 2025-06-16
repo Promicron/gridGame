@@ -30,7 +30,7 @@ const Game = () => {
           Math.floor(Math.random() * GRID_ROWS),
           Math.floor(Math.random() * GRID_COLS),
         ]);
-      }, 700);
+      }, 650);
       return () => clearInterval(interval);
     } else {
       setGameOver(true);
@@ -53,8 +53,8 @@ const Game = () => {
 
   const fetchLeaderboard = async () => {
     const { data, error } = await supabase
-      .from("GridGame")
-      .select("score, created_at")
+      .from("leaderboard")
+      .select("score, created_at, name")
       .order("score", { ascending: false });
     if (error) {
       console.error("Error fetching leaderboard: ", error);
@@ -71,10 +71,10 @@ const Game = () => {
     setShowModal(false);
   };
 
-  const saveScore = async (playerName) => {
+  const saveScore = async (playerName, score) => {
     if (!scoreSaved) {
       const { error } = await supabase
-        .from("GridGame")
+        .from("leaderboard")
         .insert([{ name: playerName, score }]);
       if (error) {
         console.error("Error saving score:", error);
@@ -86,7 +86,7 @@ const Game = () => {
 
   return (
     <section>
-      <Navbar />
+      {/* <Navbar /> */}
       <section className="container-fluid">
         <div className="container text-center mt-4">
           <h1 className="mb-3">Click the Colored Box!</h1>
