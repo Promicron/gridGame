@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const ResultModal = ({
   showModal,
@@ -12,54 +12,70 @@ const ResultModal = ({
   handleRestart,
 }) => {
   const [name, setName] = useState("");
-  const handleSaveScore = () => {
-    if (name.trim()) {
-      saveScore(name);
-    }
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSaveScore = async () => {
+    if (!name.trim()) return;
+    setIsSaving(true);
+    await saveScore(name, score);
+    setIsSaving(false);
   };
 
   return (
-    <Modal show={showModal} onHide={handleRestart} centered>
-      <Modal.Body>
-        <div className="d-block text-center">
-          <h3>Game Over !</h3>
-          <h4>Your Final Score: {score}</h4>
-          {!scoreSaved ? (
-            <>
-              <Form.Group className="mt-3">
-                <Form.Label>Enter Your Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Your Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Form.Group>
-              <Button
-                variant="success"
-                onClick={handleSaveScore}
-                className="mt-3"
-                disabled={!name.trim()}
-              >
-                Save to Leaderboard
-              </Button>
-            </>
-          ) : (
-            <div className="d-block">
-              <p className="text-success mt-3">Score saved!</p>
-              <button className="btn btn-outline-dark">
-                <Link to='/leaderboard'>View Leaderboards</Link>
-              </button>
-            </div>
-          )}
-        </div>
+    <Modal
+      show={showModal}
+      onHide={handleRestart}
+      centered
+      backdrop="static"
+      keyboard={false}
+    >
+      <Modal.Body className="text-center p-4">
+        <h3 className="mb-3">🎉 Game Over!</h3>
+        <h4>
+          Your Final Score: <strong>{score}</strong>
+        </h4>
+
+        {!scoreSaved ? (
+          <>
+            <Form.Group className="mt-4">
+              <Form.Label>Enter Your Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Your Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                disabled={isSaving}
+              />
+            </Form.Group>
+            <Button
+              variant="success"
+              onClick={handleSaveScore}
+              className="mt-3 w-100"
+              disabled={!name.trim() || isSaving}
+            >
+              {isSaving ? (
+                <>
+                  <Spinner animation="border" size="sm" className="me-2" />
+                </>
+              ) : (
+                "Save to Leaderboard"
+              )}
+            </Button>
+          </>
+        ) : (
+          <div className="mt-4">
+            <p className="text-success fw-bold">✅ Score saved!</p>
+            <Link to="/leaderboard" className="btn btn-outline-dark mt-2">
+              View Leaderboards
+            </Link>
+          </div>
+        )}
       </Modal.Body>
-      <Modal.Footer>
-        <div className="d-flex justify-content-center">
-          <Button variant="primary" className="ms-3" onClick={handleRestart}>
-            Restart
-          </Button>
-        </div>
+
+      <Modal.Footer className="justify-content-center">
+        <Button variant="primary" onClick={handleRestart}>
+          🔁 Restart Game
+        </Button>
       </Modal.Footer>
     </Modal>
   );
