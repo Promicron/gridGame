@@ -2,18 +2,9 @@ import { Nav } from "react-bootstrap";
 
 const Navbar = () => {
   return (
-    <nav
-      className="navbar bg-secondary border-bottom border-body"
-      data-bs-theme="dark"
-    >
-      <div className="container">
+    <nav className="navbar bg-transparent border-body" data-bs-theme="dark">
+      <div className="container text-white">
         <a className="navbar-brand" href="#">
-          {/* <img
-              src="/docs/5.3/assets/brand/bootstrap-logo.svg"
-              alt="Bootstrap"
-              width="30"
-              height="24"
-            /> */}
           GridGame
         </a>
         <Nav.Link href="/leaderboard">Leaderboard</Nav.Link>
