@@ -26,6 +26,9 @@
   z-index: 1;
   position: relative;
 }
+.top-12 {
+  margin-top: 45%;
+}
 @media screen and(max-width:480px) {
   /* .grid-boxes .col{
 

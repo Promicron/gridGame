@@ -21,8 +21,8 @@ const Home = () => {
         />
       </div>
       <Navbar />
-      <div className="d-flex mt-5 justify-content-center align-items-center ">
-        <div className=" text-center position-relative z-1">
+      <div className="d-flex mt-5 justify-content-center align-items-center">
+        <div className=" text-center position-relative z-1 top-12">
           <h2 className="text-white">Welcome !</h2>
           <button className="btn btn-light" onClick={OpenInfoModal}>
             {" "}
